@@ -2,7 +2,9 @@ from pyrogram import Client, filters
 from pyrogram.errors import FloodWait
 from helper.database import AshutoshGoswami24
 
-@Client.on_message(filters.private & filters.command("autorename"))
+CHANNEL_ID = -1002464918529
+
+@Client.on_message(filters.chat(CHANNEL_ID) & filters.private & filters.command("autorename"))
 async def auto_rename_command(client, message):
     user_id = message.from_user.id
 
@@ -14,7 +16,7 @@ async def auto_rename_command(client, message):
 
     await message.reply_text("**Auto Rename Format Updated Successfully! ✅**")
 
-@Client.on_message(filters.private & filters.command("setmedia"))
+@Client.on_message(filters.chat(CHANNEL_ID) & filters.private & filters.command("setmedia"))
 async def set_media_command(client, message):
     user_id = message.from_user.id    
     media_type = message.text.split("/setmedia", 1)[1].strip().lower()
